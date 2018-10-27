@@ -81,7 +81,7 @@ body {
  #nav-bar-top{
      margin: 0;
      grid-area: a;
-     padding-top: 10px;
+     padding-top: 13px;
  }
  
  #nav-bar-top li{
@@ -104,7 +104,6 @@ body {
      grid-template-columns: 3fr 1fr 1fr; */
      /* align-items: center; */
      display:flex;
-     align-items:center;
  }
  
  #nav-search-top input{
@@ -125,20 +124,30 @@ body {
      margin-left:15px; */
      border-radius:50px;
      width:150px;
-     margin-left:10px;
+     margin-left:20px;
      padding:5px 10px;
      box-sizing: border-box;
      background-color: #fff;
      /* grid-area: b; */
-     margin: 15px 0px 5px 10px;
-     border-radius: 5px;
+     margin-top:8px;
+     border-radius: 10px;
      border: 2px solid transparent;
  }
+
+ #nav-search-top img{
+    /* margin-top: 8px;
+    margin-left: 0px; */
+}
  
  #nav-search-top button{
      display: block;
      border-radius: 2px;
      border: 2px solid transparent;
+     margin-top: 8px;
+     margin-right: 90px;
+     border-radius: 10px;
+     height: 30px;
+     padding-top: 3px;
  }
  
  .twitnav{
@@ -227,7 +236,7 @@ body {
  }
   
  .profilecardimagediv{
-  margin:-30px 0 0 8px;
+  margin:-30px 0 0 15px;
   padding:1px;
   background:#FFF;
   display:inline-block;
@@ -245,8 +254,8 @@ body {
  .profilecardnameidcont{
   /* background-color: aquamarine; */
   position:absolute;
-  top:103px;
-  left:90px;
+  top:80px;
+  left:110px;
   width:185px;
  }
   
@@ -264,7 +273,7 @@ body {
   
  #profilecardname{
   color:inherit;
-  text-transform:uppercase;
+  text-transform:uppercase; 
  }
   
  #profilecarduid{
@@ -329,10 +338,13 @@ body {
  .TrendingTopic{
      background-color: white;
      grid-area: trending;
+     padding-bottom: 15px;
  }
  
- .TrendingTopic h2{
-     text-align: center;
+ .TrendingTopic h2{/* 
+     text-align: center; */
+     padding-top: 20px;
+     padding-left: 28px;
  }
  
  .rightcontainer{
@@ -379,6 +391,9 @@ body {
   line-height: 20px; 
   box-shadow: 0px 0px 0px 1px #1da1f2; 
   background-color: rgb(255, 255, 255);
+ }
+ .posttweettacontainer textarea{
+    resize: none;
  }
   
  .posttweetta{
@@ -554,11 +569,14 @@ body {
      margin-top: 10px;
  } */
  
-.follow{
-  padding: 15px 15px;
+.follow{/* 
+  padding: 15px 15px; */
+  padding-left: 0px;
   grid-area: follow;
   background-color: white;
-  margin: 10px;
+  margin-top: 10px;
+  padding-bottom: 40px;
+  padding-right: 15px
 }
 
 .connect{
@@ -569,21 +587,33 @@ body {
   color:#37A9F1;
   text-decoration: none;
 }
+
+#head-follow{
+    padding-left: 15px;
+    padding-bottom: 50px;
+    /* border-bottom: 1px solid #ddd; */
+    width: 100%;
+}
  
 #head-follow h3{
-  float:center;
+  float:left;
 }
 #head-follow a{
   float:left;
   color:#37A9F1;
-  margin-left:5px;
+  margin-left:10px;
+  padding-top: 18px;
   text-decoration: none;
 }
 #info-follow{
-  padding-top: 10px;
-  padding-bottom: 10px;
+  float: left;
   border-bottom: 1px solid #ddd;
   background-color: white;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  /* padding-right: 50px; */
+  width: 100%;
+  padding-left: 15px;
 }
 
 #info-follow img{
@@ -591,12 +621,12 @@ body {
   height: 50px;
   border-radius: 50%;
   border: 2px solid #ddd;
-  float:center;
+  float:left;
   margin-right: 5px;
 }
 
-.follow-data{
-  float:center;
+.follow-data{/* 
+  float:center; */
   background-color: white
 }
 
