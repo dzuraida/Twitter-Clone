@@ -10,7 +10,7 @@ function signUp(){
     password = document.getElementById('password').value;
 
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("POST", "http://localhost:7000/api/v1/signup");
+    xmlHttp.open("POST", "http://localhost:5000/signup");
     xmlHttp.setRequestHeader("Content-Type", "application/json");
     xmlHttp.send(JSON.stringify({
         "username": username,
@@ -110,39 +110,41 @@ function addTweet(){
 function allTweet(){
     var xmlHttp = new XMLHttpRequest();
     // xmlHttp.open("GET", "http://localhost:7000/api/v1/tweet");
-    xmlHttp.open("GET", "http://localhost:5000/getTweet");
-    xmlHttp.send();
-    xmlHttp.onreadystatechange = function() {
-        // var response = JSON.parse(this.response)
-        // console.log("INI RESPONNYA", response)
-        if(this.readyState == 4 && this.status == 200) {
-            JSON.parse(this.response).forEach(function (data, index) {
-                document.getElementById('tweetscontainer').insertAdjacentHTML("afterbegin",`<div class="tweet" style="
-                display: flex;
-                align-items: center;
-            ">
-            <div class="images" style="
-            margin-right: 1rem">
-                <img src="IMG/1.jpg" alt="foto orang" style="
-                width: 50px;
-                height: 50px;
-                border-radius: 50px"/>
-            </div>
-            <div class="content">
-                <div class="username">
-                    <h3>${data.email}</h3>
-                </div>
-                <div class="tweet">
-                    <p>${data.tweet}</p>
-                </div>
-            </div>
-            <div>
-                <button type="submit" onclick="deleteTweet(this)" class="delete" id="del$(i)">Delete</button>
-            </div>
-        </div>`);
-            });
-        }
-    }
+    xmlHttp.open("POST", "http://localhost:5000/Tweet");
+    xmlHttp.send({
+        'username' : "@hayolohh"
+    });
+    // xmlHttp.onreadystatechange = function() {
+    //     // var response = JSON.parse(this.response)
+    //     // console.log("INI RESPONNYA", response)
+    //     if(this.readyState == 4 && this.status == 200) {
+    //         JSON.parse(this.response).forEach(function (data, index) {
+    //             document.getElementById('tweetscontainer').insertAdjacentHTML("afterbegin",`<div class="tweet" style="
+    //             display: flex;
+    //             align-items: center;
+    //         ">
+    //         <div class="images" style="
+    //         margin-right: 1rem">
+    //             <img src="IMG/1.jpg" alt="foto orang" style="
+    //             width: 50px;
+    //             height: 50px;
+    //             border-radius: 50px"/>
+    //         </div>
+    //         <div class="content">
+    //             <div class="username">
+    //                 <h3>${data.email}</h3>
+    //             </div>
+    //             <div class="tweet">
+    //                 <p>${data.tweet}</p>
+    //             </div>
+    //         </div>
+    //         <div>
+    //             <button type="submit" onclick="deleteTweet(this)" class="delete" id="del$(i)">Delete</button>
+    //         </div>
+    //     </div>`);
+    //         });
+    //     }
+    // }
 }
 
 function addToLocalStorage(){

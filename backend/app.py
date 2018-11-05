@@ -77,10 +77,11 @@ tweet_json = {
 @app.route('/getTweet')
 def view_data():
     tweet = user.query.all()
-    # print (json.dumps(marshal(tweet, tweet_json)))
+    print(tweet)
+    print (json.dumps(marshal(tweet, tweet_json)))
     return json.dumps(marshal(tweet, tweet_json))
-    # return 'sukses',200
-
+    return 'sukses',200
+    
 # def get_tweet():
 #     tweet = user.query.all()
 #     print(tweet)
@@ -109,4 +110,4 @@ def hello():
     return "Hello"
 
 if __name__ == '__main__':
-    app.run(debug = True, host = os.getenv('HOST'), port = os.getenv('PORT'))
+    app.run(debug = True)
