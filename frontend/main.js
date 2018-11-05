@@ -44,10 +44,10 @@ function signIn(){
     }));
     xmlRequest.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
-            console.log(typeof this.response); // check type output data
-            console.log(JSON.parse(this.response).email);
+            // console.log(typeof this.response); // check type output data
+            // console.log(JSON.parse(this.response).email);
 
-            localStorage.setItem('email', JSON.parse(this.response).email);
+            // localStorage.setItem('email', JSON.parse(this.response).email);
 
             window.location = "/timeline.html";
         }
@@ -68,7 +68,7 @@ function addTweet(){
     email = localStorage.email
     
     // xmlHttp.open("POST","http://localhost:7000/api/v1/tweeting");
-    xmlHttp.open("POST","http://localhost:5000/postTweet");
+    xmlHttp.open("POST","http://localhost:5000/tweeting");
     xmlHttp.setRequestHeader("Content-Type", "application/json");
     xmlHttp.send(JSON.stringify({
         "email": email,

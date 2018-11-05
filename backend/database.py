@@ -3,9 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_restful import marshal, fields
 import datetime
 import os
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+CORS(app, support_credentials=True)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:please@localhost:17711/Twitter'
 POSTGRES = {
     'user' : 'postgres',
@@ -67,11 +68,15 @@ def login():
     if request.method == 'POST':
         request_data = request.get_json()
 
-        # check if username exist in db
+        # check if email exist in db
         req_email = request_data.get('email')
         req_password = request_data.get('password')
-        userDB = User.query.filter_by(username=req_email, password=req_password).first()
+        userDB = User.query.filter_by(email=req_email, password=req_password).first()
         if userDB is not None:
+            # payload = {
+            #     "email" : userDB.email
+            # }
+            # encoded = jwt.
             return "LOGIN SUCCESS", 200
         else:
             return "CHECK YOUR USERNAME OR PASSWORD AGAIN", 404
