@@ -161,10 +161,26 @@ function allTweet(){
     }
 }
 
-function allprofile(){
+// function allprofile(){
 
-    id = localStorage.getItem('id');
+//     id = localStorage.getItem('id');
+
+//     var xmlHttp = new XMLHttpRequest();
+//     xmlHttp.open("POST","http://localhost:5000/")
+// }
+
+function deleteTweet(data){
+    parent = document.getElementById(data.id).closest(".tweet");
+    tweet = parent.querySelectorAll('p')[0].innerText;
+    email = parent.querySelectorAll('h3')[0].innerText;
+    date = parent.querySelectorAll('span')[0].innerText;
 
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("POST","http://localhost:5000/")
+    xmlHttp.open("DELETE", "http://localhost:5000/AllTweet");
+    xmlHttp.setRequestHeader("Content-Type", "application/json");
+    xmlHttp.send(JSON.stringify({
+        "email": email,
+        "tweet": tweet,
+        "date": date
+    }));
 }
