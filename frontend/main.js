@@ -44,8 +44,8 @@ function signIn(){
     }));
     xmlRequest.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
-            // console.log(typeof this.response); // check type output data
-            // console.log(JSON.parse(this.response).email);
+            console.log(typeof this.response); // check type output data
+            console.log(JSON.parse(this.response).email);
             username = (JSON.parse(this.response).username)
             localStorage.setItem('username', username);
 

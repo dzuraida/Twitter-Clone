@@ -41,6 +41,14 @@ section {
     height:95vh;
     width:50%;
     float:right;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+  }
+
+#right h1 {
+    padding:15px 0px;
   }
 
 .doit{  
