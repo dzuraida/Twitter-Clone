@@ -1,0 +1,873 @@
+/******************
+*** Aturan Umum *** 
+*******************/
+*{
+    font-family:calibri;
+}
+
+body{
+    background-color: #e6ecf0;
+}
+
+a {
+    text-decoration: none;
+}
+
+h3{
+    margin : 13.5px;
+    color:#0084B4;   
+}
+
+li{
+    display: inline-block;
+}
+
+ul{
+    padding:0;
+}
+
+
+/******************
+** Section Feed *** 
+*******************/
+.wrapper{
+    max-width : 90%;
+    margin : 0 auto;
+}
+
+section{
+    /* text-align: center; */
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    background-color: #e6ecf0;
+}
+
+/* bagian kiri */
+
+#profil {
+    margin: 8px;
+    padding: 10px;
+    background-color: white;
+}
+
+#profil img:nth-child(n+1) {
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+}
+
+#profil img:nth-child(n+2) {
+    width: 100%;
+    width: 80px;
+    height: 80px;
+    margin-top: -30px;
+    border-radius: 50%;
+    border:3px solid #fff;
+}
+
+#profil .profile #nama_profile{
+    text-align: center;
+    padding-left:100px;
+    display: inline-block;
+    margin-top:-50px;
+}
+
+#profil .profile #nama_akun{
+    padding-left:100px;
+    margin-top:-30px;
+    padding-top: 5px; 
+    color:#d7dbdf;
+    font-weight: bold;   
+}
+
+.nama_tweet{
+    display:grid;
+    grid-template-areas:
+        "a c e"
+        "b d f";
+     grid-template-columns: repeat(3, 1fr);
+}
+
+#profil .nama_tweet #tweet{
+    font-weight: bold;
+    color:#a9aaaa98;
+    grid-area: a;
+    text-align: center;
+    margin:0px;
+}
+
+#profil .nama_tweet #angka-tweet{
+    margin-top:0px;
+    text-align: center;
+    color: #0084B4;
+    grid-area: b;
+}
+#profil .nama_tweet #following-text{
+    font-weight: bold;
+    color:#a9aaaa98;
+    grid-area: c;
+    text-align: center;
+    margin:0px;
+}
+
+#profil .nama_tweet #angka-following{
+    margin-top:0px;
+    text-align: center;
+    color: #0084B4;
+    grid-area: d;
+}
+#profil .nama_tweet #follower{
+    font-weight: bold;
+    color:#a9aaaa98;
+    grid-area: e;
+    text-align: center;
+    margin:0px;
+}
+
+#profil .nama_tweet #angka-follower{
+    margin-top:0px;
+    text-align: center;
+    color: #0084B4;
+    grid-area: f;
+}
+
+#trending-section{
+    margin:8px;
+    padding: 10px;
+    background-color: white;
+    height: 100%;
+    color:black;
+    font-weight: bold;
+}
+
+#trending-section ul li{
+    padding:10px;
+}
+
+#trending-section ul li a{
+    text-align: left;
+    color:#0084B4;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+
+
+/* bagian tengah */
+
+#tweetbox-section{
+    padding: 10px;
+    text-align:right;
+    background-color: #E5F2F7;
+    margin-top: 8px;
+    
+}
+
+#tweet-box{
+    display:block;
+    width: 100%;
+    height:50px;
+    border-radius: 5px;
+    border: 1px solid rgb(196,196,196);
+    
+}
+
+#submit-tweet{
+    margin-top: 5px;
+    border-radius: 10px;
+    background-color: #0084B4;
+    color:white;
+    size: 5px;
+    border: 1px solid rgb(196,196,196);
+    height:34px;
+    width: 73;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+
+#tweetfeed-section{
+    width: 100%;
+    height: auto;
+}
+
+.tweet{
+    background-color: white;
+    padding: 15px;
+    display: grid;
+    grid-template-areas:
+         ". . . b b b b b b b b b b b b b b b b f"
+         "a a . c c c c c c c c c c c c c c c c c"
+         "a a . e e e e e e e e e e e e e e e e e"
+         ". . . . . . d d d d d d d d d d d d d d";
+     grid-template-columns: repeat(15, 1fr);
+     border-bottom: 1px solid #e6ecf0;
+ }
+.tweet #gambar-akun {
+     margin: 0px;
+     grid-area: a;
+     border-radius: 60%;
+     width: 80px;
+     height: 80px;
+ }
+
+.tweet #user-akun {
+    margin: 5px;
+    margin-bottom: 0;
+    grid-area: b;
+}
+ 
+.tweet p{
+    margin: 5px;
+    grid-area: c;
+}
+
+.tweet span{
+    grid-area: d;
+    text-align: right;
+}
+
+.tweet video {
+    width: 100%;
+    margin: 0px;
+    grid-area: e;
+}
+
+.tweet #gambar-tweet{
+    width: 100%;
+    margin: 0px;
+    grid-area: e;
+}
+
+.tweet #delete-tweet{
+    grid-area:f;
+    background-color: #0084B4;
+    color:white;
+    border: 1px solid rgb(196,196,196);
+}
+
+.tweet #delete-tweet:hover{
+    grid-area:f;
+    background-color: white;
+    color:#0084B4;
+    border: 1px solid rgb(196,196,196);
+    cursor: pointer;
+}
+
+  
+
+/* bagian kanan */
+
+#following .follow{
+    display: grid;
+    grid-template-areas:
+        "a b c "
+        ;
+     grid-template-columns: (1fr, 2fr, 1fr);
+     margin: 8px;
+     margin-bottom:0px;
+     padding: 10px;
+     background-color: white;
+     height:20px;
+}
+
+
+#following .follow #follow-head{
+    background-color: white;
+    grid-area: b;
+    margin:0px;
+    padding-left:20px;
+    color:black;
+}
+
+
+
+#following .follow #follow-see{
+    background-color: white;
+    grid-area: c;
+    padding-left:10px;
+    margin-top:5px;
+    color:#0084B4;
+}
+
+.follow-gambar{
+    display: grid;
+    grid-template-areas:
+        "a b c "
+        ;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0px 8px 0px 8px;
+    padding: 10px;
+    background-color: white;
+    border-bottom: 1px solid #e6ecf0;
+}
+
+#following .follow-gambar #gambar-akun{
+    background-color: white;
+    width: 100%;
+    width: 50px;
+    height:50px;
+    margin-bottom: 10px;
+    border-radius:50px;
+    float:left;
+    clear:both;
+    margin-left:13px;
+    grid-area: a;
+}
+
+#following .follow-gambar #following-nama{
+    font-size:15;
+    font-weight: bold;
+    grid-area: b;
+    margin-top:5px;
+}
+
+#following .follow-gambar #follow-at{
+    font-size:15;
+    font-weight: bold;
+    grid-area: b;
+    margin-top:5px;
+    padding-left:50px;
+    color:#a9aaaa98;
+}
+
+
+#following .follow-gambar #button-follow{
+    font-size:12;
+    font-weight: bold;
+    border-radius: 15px;
+    margin-top:30px;
+    width: 80px;
+    height:30px;
+    border:1px solid rgb(196,196,196);
+    grid-area: b;
+    background: #0084B4;
+    color: white;
+}
+
+#following .follow-gambar #button-follow:hover{
+    background: white;
+    color:#0084B4;
+    cursor: pointer;
+}
+
+
+/******************
+******** Footer *** 
+*******************/
+
+#footer .footer{
+    margin: 8px;
+    padding: 10px;
+    background-color: white;
+
+}
+
+#footer .footer #footer-item{
+    color:#a9aaaa98;
+    font-size:12px;
+}
+
+
+/******************
+******** edit account *** 
+*******************/
+
+/* Profile Account Edit */
+#profil-edit-account {
+    margin: 8px;
+    padding: 10px;
+    background-color: white;
+    height:155px;
+}
+
+#profil-edit-account img:nth-child(n+1) {
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+}
+
+#profil-edit-account img:nth-child(n+2) {
+    width: 100%;
+    width: 80px;
+    height: 80px;
+    margin-top: -30px;
+    border-radius: 50%;
+    border:3px solid #fff;
+}
+
+.nama_profile_edit_account{
+    text-align: center;
+    padding-left:100px;
+    display: inline-block;
+    margin-top:-50px;
+}
+
+.nama_akun_edit_account{
+    padding-left:100px;
+    margin-top:-30px;
+    padding-top: 5px; 
+    color:#d7dbdf;
+    font-weight: bold;   
+}
+
+/* Profile list edit account */
+
+.navbar-list{
+    display:grid;
+    grid-template-areas: "a . . b";
+    grid-template-columns: repeat(1fr 2fr 1fr);
+    margin: 0px 8px 0px 8px;
+    padding: 10px;
+    background-color: white;
+    border-bottom:1px solid rgb(196,196,196);
+}
+
+.navbar-list #list-1{
+    grid-area: a;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+
+.navbar-list #list-2{
+    grid-area: b;
+    text-align:right;
+}
+
+/* edit account tengah */
+#navbar-list-content{
+    padding: 10px;
+    background-color:white;
+    margin-top: 8px;
+    border-bottom:1px solid rgb(196,196,196);
+    
+}
+
+#navbar-list-content #header h2{
+    margin:0px;
+    font-weight: bold;
+    
+}
+
+#form-account{
+    padding: 10px;
+    background-color:white;
+    border-bottom:1px solid rgb(196,196,196); 
+    font-weight: inherit; 
+}
+
+.box-form-account{
+    background-color:white;
+    margin-top:-10px;
+}
+
+.box-form-account #username{
+    margin-left:30px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.box-form-account #fullname{
+    margin-left:32px;
+    margin-right: 10px;
+}
+
+.box-form-account #text-small{
+    color:rgb(196,196,196);
+
+}
+
+.box-form-account #email{
+    margin-left:45px;
+    margin-right: 10px;
+    margin-top: 0px;
+}
+
+.box-form-account #text-small{
+    color:rgb(196,196,196);
+
+}
+
+.box-form-account #biography{
+    margin-left:30px;
+    margin-right: 10px;
+}
+
+.box-form-account #form-biography{
+    height:70px;
+}
+
+.box-form-account #photoprofile{
+    margin-left:20px;
+    margin-right: 10px;
+}
+
+.box-form-account #form-photoprofile {
+    margin-left:10px;
+    margin-right: 10px;
+    border:solid 1px rgb(196,196,196);
+}
+
+/* Security */
+#navbar-list-content2 #header-Security{
+    padding: 10px;
+    margin-top: 0px;
+    background-color:white;
+ 
+}
+
+#login-security{
+    display:grid;
+    grid-template-areas:"a . b b b"
+                        ". c c c .";
+    grid-template-columns: repeat(1fr 4fr);
+    padding: 10px;
+    background-color: white;
+    margin-bottom: 0px;
+}
+
+#login-security #login-very{
+    grid-area: a;
+    margin-left:10px;
+    margin-top:0px;
+}
+
+#login-security #button-verification{
+    grid-area: b;
+    margin-left:10px;
+    width: 200px;
+    height: 30px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    border:solid 1px #0084B4;
+    color: #0084B4;
+    background: white;
+}
+
+#login-security #button-verification:hover{
+    border:solid 1px #0084B4;
+    color: white;
+    background:#0084B4;
+}
+
+
+#login-security #text-small-veri{
+    grid-area: c;
+    margin-left:10px;
+    color:rgb(196,196,196);
+}
+
+#navbar-list-content2 #header-security h2{
+    margin:0px;
+    font-weight: bold;
+}
+
+#form-security #login-security{
+    background-color: white;
+    margin-top: 0px;
+}
+
+#password-security{
+    display:grid;
+    grid-template-areas:"a b b b b"
+                        ". c c c .";
+    grid-template-columns: repeat(5,1fr);
+    padding: 10px;
+    background-color: white;
+    border-bottom:1px solid rgb(196,196,196);
+    margin-top:0px;
+    margin-bottom:0px;
+}
+
+#password-security #password-text{
+    grid-area: a;
+    margin-left:10px;
+    margin-top:0px;
+    margin-bottom:0px;
+}
+
+#password-security #input-password-text{
+    grid-area: b;
+    margin-left:10px;
+    margin-bottom: 0px;
+    background: white;
+}
+
+#password-security #text-password-text{
+    grid-area: c;
+    margin-left:10px;
+    color:rgb(196,196,196);
+}
+
+/* Content */
+#form-content #header h2{ 
+    padding: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color:white;
+
+}
+
+#content-country{
+    background-color:white;
+    margin-top:-10px;
+}
+
+.box-form-content #country{
+    margin-left:70px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.box-form-content #text-small{
+    color:rgb(196,196,196);
+
+}
+
+.box-form-content #content-country a{
+    color:#0084B4;
+}
+
+#button-save{
+    text-align:center;
+    margin:10px;
+    padding:10px;
+    border-top:1px solid rgb(196,196,196);
+}
+
+#button-save-change{
+    width: 150px;
+    height: 30px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    border:solid 1px #0084B4;
+    color: white;
+    background: #0084B4;
+}
+
+#button-save-change:hover{
+    border:solid 1px #0084B4;
+    color: #0084B4;
+    background:white;
+}
+
+/******************
+******** edit password *** 
+*******************/
+
+/* tengah content */
+#navbar-list-edit-password{
+    padding: 10px;
+    background-color:white;
+    margin-top: 8px;
+    border-bottom:1px solid rgb(196,196,196);
+    
+}
+
+#navbar-list-edit-password #header h2{
+    margin:0px;
+    font-weight: bold;  
+}
+
+#navbar-list-edit-password #header p{
+    margin:0px;
+    color:rgb(196,196,196);  
+}
+
+#navbar-list-edit-password2{
+    background-color:#1da1f2;
+    border-bottom:1px solid rgb(196,196,196);
+    padding:10px;
+    
+}
+
+#navbar-list-edit-password2 a{
+    margin:0px;
+    font-weight: bold; 
+    color:white;   
+}
+
+#navbar-list-edit-password2 p{
+    margin:0px;
+    color:white; 
+    font-weight: bold;  
+}
+
+.box-form-password{
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-areas: "a b c d"
+                         "e f g h";
+    padding: 20px;
+    background-color: white;
+    
+}
+
+.box-form-password #password{
+    grid-area: a;
+    margin:0px;
+    text-align:right;
+}
+
+.box-form-password #form-password{
+    grid-area: b;
+    border:1px solid rgb(196,196,196);
+    padding:10px;
+    margin-left: 10px;
+    height:25px;
+}
+
+.box-form-password a{
+    grid-area: f;
+    margin-left: 10px;
+    color:#0084B4;
+    padding-top:10px;
+    font-size:12px;
+}
+
+/*******************
+******** Profile *** 
+*******************/
+
+.navigation{
+    background-image: url("https://abs.twimg.com/a/1512226556/img/t1/lohp_streams_header_bg_v4.png");
+    background-size: 100% 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    height: 46px;
+    position: relative;
+    width: 100%;
+    text-align:center;
+}
+
+.container-fluid .background{
+    height:200px;
+    display:block;
+}
+
+.gambar_profil img{
+    border-radius:50%;
+    width:200px;
+    height:200px;
+    border:solid 3px white;
+    margin-top:-100px; 
+    margin-left:90px;
+}
+
+.navbar-bawah{
+    display:grid;
+    grid-template-columns: 2fr 3fr 2fr;
+    background: white;
+    height:60px;
+    
+}
+
+#text-navbar li{
+    display:inline-block;
+}
+
+#text-navbar li:hover{
+    border-bottom: solid 2px #0084B4;
+    padding-bottom:7px;
+}
+
+#text-navbar ul{
+    display:inline-block;
+    margin-top:10px;
+}
+
+.text-content{
+    display:inline-block;
+    text-decoration: none;
+    font-weight: bold;
+    color:#657786;
+    padding-right:15px;
+}
+
+.text-angka{
+    display:inline-block;
+    text-decoration: none;
+    font-weight: bold;
+    color:#657786;
+    font-size: 20px;
+    text-align: center;
+}
+
+.text-angka:hover{
+    color:#0084B4;
+}
+
+#button-edit-profil button {
+    background: #0084B4;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    border:solid 1px rgb(196,196,196);
+    height: 34px;
+    width:100px;
+    float:right;
+    margin: 13px 70px 0px 0px;
+}
+
+
+/* box-profil */
+.box-profil{
+    margin:8px;
+    padding:10px;
+}
+
+.box-profil h1{
+    padding-top:10px;
+    margin-bottom: 0px;
+}
+
+.box-profil h4{
+    color: #657786;
+    margin-top:0px;
+}
+
+.location-user{
+    color:#657786;
+    font-weight: bold;
+    font-family: calibri;
+    padding:10px;
+}
+
+.location-user a{
+    color:#657786;
+    font-weight: bold;
+    font-family: calibri;
+}
+
+.location-user a:hover{
+    border-bottom:solid 1px;
+    color:#0084B4;
+}
+
+.box-foto{
+    margin:8px;
+    padding:10px;
+}
+
+#foto-foto img{
+    width:83px;
+    height:83px;
+    border-radius:5px;
+    margin:1px;
+}
+
+.box-profil-heading ul{
+    background: white;
+    margin-top:8px;
+    margin-bottom:0px;
+    border-bottom: solid 1px rgb(196,196,196);
+}
+
+.box-profil-heading h3{
+    color:#0084B4;
+    cursor: pointer;
+}
+
+.box-profil-heading h3:hover{
+    color:black;
+}

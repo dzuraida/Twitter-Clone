@@ -20,14 +20,14 @@
                                    <i class="fab fa-twitter logocenter" aria-hidden="true"></i>
                             </a>
                            <ul id="nav-bar-top">
-                               <li><a href="timeline.css"><i class="fas fa-home"> Home</i></a></li>
+                               <li><a href="timeline.html"><i class="fas fa-home"> Home</i></a></li>
                                <li><a href="notification.html"><i class="far fa-bell"> Notification</i></a></li>
                                <li><a href="messages.html"><i class="far fa-envelope"> Messages</i></a></li>
                            </ul> 
                            <div id="nav-search-top">
                                <input type="text" placeholder="Search Twitter">
-                               <img src="IMG/IMG_1526.JPG" alt="Profile Picture">
-                               <button id="twitnav" class="twitnav">Tweet</button>
+                               <img src="IMG/IMG_1526.JPG" href="profile.html" id ="nav-pic" alt="Profile Picture">
+                               <button id="twitnav" class="twitnav" onclick="logout()">Logout</button>
                             </div>
                         </nav>
                     </header>
@@ -98,13 +98,13 @@
                          
                          <div class="rightcontainer">
                                 <div class="posttweetcontainer">
-                                    <img class="posttweetprofimg" src="IMG/IMG_1526.JPG" alt="Profile Picture">
+                                    <img class="posttweetprofimg" src="IMG/IMG_1526.JPG" id="tweet-pic" alt="Profile Picture">
                                     <div class="ml56px">
                                         <div class="posttweettacontainer">
                                             <textarea id="posttweetta" class="posttweetta" placeholder="What's happening?"></textarea>
-                                            <div class="posttweetcountcont">
+                                            <!-- <div class="posttweetcountcont">
                                                 <span class="posttweetcount"><span id="totalchars">0</span>/250</span>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="posttweetbutcont">
                                             <button id="posttweetbut" class="posttweetbut" onclick="addTweet()">Tweet</button>
@@ -217,9 +217,11 @@
                                                     
                  </section>
         </div>
-        <script>
-            allTweet()
-            getProfile()
-        </script>
      </body>
+     <!-- <script src="main.js"></script> -->
+    <script>
+        allTweet();
+        getProfile();
+        cekAuth();
+    </script>
 </html>

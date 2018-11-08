@@ -1,0 +1,175 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Twitter Profile</title>
+    <link href="https://necolas.github.io/normalize.css/7.0.0/normalize.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Mali" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
+    <!-- <link rel="styesheet" href="timeline.css" type="text/css" media="screen"/> -->
+    <link href="profile.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <div class="navigation">
+        <header>
+            <!-- navigasi :list item -->
+            <nav>
+                <a href="timeline.html">
+                    <i class="fab fa-twitter logocenter" aria-hidden="true"></i>
+                </a>
+                <ul id="nav-bar-top">
+                    <li><a href="timeline.css"><i class="fas fa-home"> Home</i></a></li>
+                    <li><a href="notification.html"><i class="far fa-bell"> Notification</i></a></li>
+                    <li><a href="messages.html"><i class="far fa-envelope"> Messages</i></a></li>
+                </ul>
+                <div id="nav-search-top">
+                    <input type="text" placeholder="Search Twitter">
+                    <img src="IMG/IMG_1526.JPG" id="nav-pic" alt="Profile Picture">
+                    <button id="twitnav" class="twitnav">Logout</button>
+                </div>
+            </nav>
+        </header>
+
+        <div class="container-fluid">
+            <div id="background">
+                <img src="/IMG/IMG_1570.JPG" height="320px" width="100%">
+            </div>
+        </div>
+
+        <div class="navbar-bawah">
+            <div class="gambar_profil">
+                <img src="/IMG/IMG_1526.JPG" id="profile-foto" alt="gambar">
+            </div>
+
+            <div id="text-navbar">
+                <ul>
+                    <li a href="#" class="text-content">Tweets
+                        <br><a href="#" class="text-angka">0</a>
+                    </li>
+                    <li a href="#" class="text-content">Following
+                        <br><a href="#" class="text-angka">0</a>
+                    </li>
+                    <li a href="#" class="text-content">Followers
+                        <br><a href="#" class="text-angka">0</a>
+                    </li>
+                    <li a href="#" class="text-content">Likes
+                        <br><a href="#" class="text-angka">0</a>
+                    </li>
+                    <li a href="#" class="text-content">Lists
+                        <br><a href="#" class="text-angka">0</a>
+                    </li>
+                    <li a href="#" class="text-content">Moments
+                        <br><a href="#" class="text-angka">0</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="button-edit-profil">
+                <button type="submit" id=button>Edit Profile</button>
+            </div>
+        </div>
+
+
+        <div class="wrapper">
+            <section>
+                <!-- kiri  -->
+                <div>
+
+                    <!--Profile -->
+                    <div class="box-profil">
+                        <div class="profil-user">
+                            <h1 id="nama_profile">YOUR NAME</h2>
+                                <h4 id="nama_akun">@username</h4>
+                                <p>Bio ini teh</p>
+                        </div>
+                        <div class="location-user">
+                            <i class="fas fa-map-marker-alt"> <span>Indonesia</span></i>
+                        </div>
+                        <div class="location-user">
+                            <i class="far fa-calendar-alt"> <span>Joined 06 November 2018</span></i>
+                        </div>
+                    </div>
+
+                    <!-- Foto-foto -->
+                    <div class="box-foto">
+                        <div class="location-user">
+                            <i class="far fa-image"><span>
+                                    <a href="">Photos and videos</a>
+                                </span></i>
+                        </div>
+                        <div id="foto-foto">
+                            <ul>
+                                <li><img src="/IMG/1.jpg"></li>
+                                <li><img src="/IMG/2.jpg"></li>
+                                <li><img src="/IMG/3.jpg"></li>
+                                <li><img src="/IMG/4.jpg"></li>
+                                <li><img src="/IMG/5.jpg"></li>
+                                <li><img src="/IMG/6.jpg"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- tengah -->
+                <div>
+                    <!-- tweetbox -->
+                    <div class="box-profil-heading">
+                        <ul>
+                            <li>
+                                <h3 href="#">Tweet</h3>
+                            </li>
+                            <li>
+                                <h3 href="#">Tweet&Replies</h3>
+                            </li>
+                            <li>
+                                <h3 href="#">Media</h3>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- tweetfeed -->
+                    <div id="tweetfeed-section">
+
+                    </div>
+                </div>
+
+                <!-- kanan -->
+                <div>
+                    <!-- friend suggestion -->
+                    <div id="following">
+                        <div class="follow">
+                            <h3 id="follow-head">Following</h3>
+                        </div>
+
+                    </div>
+
+                    <div id="trending-section">Trending Untuk Anda
+                        <ul>
+                            <li><a href="#" id="satu">#MakersInstitute</a></li><br>
+                            <li><a href="#">#Python</a></li><br>
+                            <li><a href="#">#PersibDay</a></li><br>
+                            <li><a href="#">#TimnasDay</a></li><br>
+                            <li><a href="#">#JabarJuara</a></li><br>
+                        </ul>
+                    </div>
+
+
+                </div>
+
+            </section>
+            <script>
+                getProfile()
+                cekAuth()
+                // getFollowing();
+                // getProfileHome();
+            </script>
+</body>
+
+</html>

@@ -4,21 +4,13 @@ from flask_restful import marshal, fields
 import datetime
 import os
 from flask_cors import CORS, cross_origin
+import jwt
 
 app = Flask(__name__)
 CORS(app, support_credentials=True)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:please@localhost:17711/Twitter'
-POSTGRES = {
-    'user' : 'postgres',
-    'pw' : 'please',
-    'db' : 'Twitter',
-    'host' : '127.0.0.1',
-    'port' : '17711'
-    }
-app.config.update(dict(
-    SECRET_KEY="bebas",
-    WTF_CSRF_SECRET_KEY="apa aja"
-))
+app.config['SECRET_KEY'] = os.urandom(24)
+jwtSecretKey = "apajadah"
 
 db = SQLAlchemy(app)
 
@@ -73,24 +65,26 @@ def login():
         req_password = request_data.get('password')
         userDB = User.query.filter_by(email=req_email, password=req_password).first()
         if userDB is not None:
-            json_format = {
-                'username': fields.String,
-                'fullname': fields.String,
-                'email': fields.String,
-                'id': fields.String
-            }
-            user_json = json.dumps(marshal(userDB, json_format))
-            return user_json, 200
-            return "LOGIN SUCCESS", 200
         # if userDB is not None:
-        #     payload = {
-        #         "email": userDB.email,
-        #         "inikoderahasia": "lebahganteng"
-        #     }
+            payload = {
+                "email": userDB.email,
+                "username" : userDB.username,
+                "password" : userDB.password,
+                "secretcode": "lebahganteng"
+            }
 
-        #     encoded = jwt.encode(payload, jwtSecretKey, algorithm='HS256')
-        #     return encoded, 200    
-        # else:
+            encoded = jwt.encode(payload, jwtSecretKey, algorithm='HS256')
+            print(encoded)
+            return encoded, 200    
+            # json_format = {
+            #     'username': fields.String,
+            #     'fullname': fields.String,
+            #     'email': fields.String,
+            #     'id': fields.String
+            # }
+            # user_json = json.dumps(marshal(userDB, json_format))
+            # return user_json, 200
+        else:
             return "CHECK YOUR USERNAME OR PASSWORD AGAIN", 404
 
     else:
@@ -104,10 +98,11 @@ def set_cookies(username):
 @app.route('/getProfile', methods=['POST'])
 def getProfile():
     if request.method == 'POST':
-        request_data = request.get_json()
+        decoded = jwt.decode(request.headers["Authorization"], jwtSecretKey, algorithm='HS256')
+        # request_data = request.get_json()
         # check if email exist in db
-        req_username = request_data.get('username')
-
+        req_username = decoded["username"]
+        print("test")
         userDB = User.query.filter_by(username=req_username).first()
         if userDB is not None:
             json_format = {
@@ -241,8 +236,20 @@ def edit_password():
         return 'FAILED CHANGE PASSWORD',405
 
 # delete tweet routing
-# @app.route('/delete', methods=['DELETE'])
-# def delete_tweet():
+@app.route('/deletetweet', methods=['DELETE'])
+def delete_tweet():
+    request_data = request.get_json()
+    req_username = request_data.get('username')
+
+    if request.method == 'DELETE':
+        userDB = Person.query.filter_by(username=req_username).first()
+        userTweets = userDB.tweets
+
+        print(userTweets)
+        print(userTweets[0])
+        db.session.delete(userTweets[0])
+        db.session.commit()
+        return 'Fatality', 200
 
 # set session
 @app.route('/setsession')

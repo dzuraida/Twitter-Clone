@@ -27,7 +27,6 @@ function signUp(){
             alert("Data gagal di input: "+this.status);
         }
     };
-
 }
 
 function signIn(){
@@ -43,12 +42,13 @@ function signIn(){
         "password": password
     }));
     xmlRequest.onreadystatechange = function(){
+        // alert(this.response)
         if(this.readyState == 4 && this.status == 200){
-            console.log(typeof this.response); // check type output data
-            console.log(JSON.parse(this.response).email);
-            username = (JSON.parse(this.response).username)
-            localStorage.setItem('username', username);
-
+            // alert(this.response)
+            // localStorage.setItem('email', this.response);
+            // localStorage.setItem('username', this.response);
+            // localStorage.setItem('password', this.response);
+            document.cookie="email="+this.response;
             window.location = "/timeline.html";
         }
         else if(this.readyState == 4){
@@ -56,21 +56,43 @@ function signIn(){
         }
     };
 }
-function getProfile(){
-    username = localStorage.getItem('username')
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
 
+function getProfile(){
+    // username = localStorage.getItem('username')
+    // alert(username)
     var xmlProfile = new XMLHttpRequest();
     xmlProfile.open("POST", "http://localhost:5000/getProfile");
-    xmlProfile.setRequestHeader("Content-Type","application/json");
-    xmlProfile.send(JSON.stringify({
-        "username":username
-    }));
+    // xmlProfile.setRequestHeader("Content-Type","application/json");
+    xmlProfile.setRequestHeader("Authorization", getCookie("email"))
+    xmlProfile.send()
+    // xmlProfile.send(JSON.stringify({
+    //     "username":username
+    // }));
     xmlProfile.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
             profile = JSON.parse(this.response)
-
+            alert(this.response)
             document.getElementById("profile-fullname").innerText = (profile.fullname)
             document.getElementById("profile-foto").src = profile.photoprofile
+            document.getElementById("nav-pic").src = profile.photoprofile
+            document.getElementById("tweet-pic").src = profile.photoprofile
+            document.getElementById("user-name").innerText = (profile.username)
+            document.getElementById("bio").innerText = (profile.bio)
         }
     }
 }
@@ -122,7 +144,7 @@ function allTweet(){
     xmlHttp.open("POST", "http://localhost:5000/Tweet");
     xmlHttp.setRequestHeader("Content-Type", "application/json");
     xmlHttp.send(JSON.stringify({
-        'username' : "mickey"
+        'username' : localStorage.getItem('username')
     }));
     xmlHttp.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200) {
@@ -184,3 +206,29 @@ function deleteTweet(data){
         "date": date
     }));
 }
+
+function logout(){
+    localStorage.clear();
+    document.location='login.html'
+}
+function cekAuth(){
+    var email = getCookie("email");
+    if (email != "") {
+        alert("Welcome again " + email);
+    } else {
+        email = prompt("Please enter your email:", "");
+        if (email != "" && email != null) {
+            setCookie("email", email, 365);
+        }
+    }
+}
+    // token = localStorage.getItem('email');
+    // var 'email' = document.cookie;
+    // alert(token)
+
+//     if (token == null){
+//         alert('Silakan login dahulu!')
+//         localStorage.clear();
+//         document.location='login.html'
+//     }
+// }
