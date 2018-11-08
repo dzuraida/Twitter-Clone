@@ -73,11 +73,53 @@ def login():
         req_password = request_data.get('password')
         userDB = User.query.filter_by(email=req_email, password=req_password).first()
         if userDB is not None:
-            # payload = {
-            #     "email" : userDB.email
-            # }
-            # encoded = jwt.
+            json_format = {
+                'username': fields.String,
+                'fullname': fields.String,
+                'email': fields.String,
+                'id': fields.String
+            }
+            user_json = json.dumps(marshal(userDB, json_format))
+            return user_json, 200
             return "LOGIN SUCCESS", 200
+        # if userDB is not None:
+        #     payload = {
+        #         "email": userDB.email,
+        #         "inikoderahasia": "lebahganteng"
+        #     }
+
+        #     encoded = jwt.encode(payload, jwtSecretKey, algorithm='HS256')
+        #     return encoded, 200    
+        # else:
+            return "CHECK YOUR USERNAME OR PASSWORD AGAIN", 404
+
+    else:
+        return 'METHOD NOT ALLOWED', 405
+
+def set_cookies(username):
+    resp = make_response('')
+    resp.set_cookie('username', username)
+    return resp
+
+@app.route('/getProfile', methods=['POST'])
+def getProfile():
+    if request.method == 'POST':
+        request_data = request.get_json()
+        # check if email exist in db
+        req_username = request_data.get('username')
+
+        userDB = User.query.filter_by(username=req_username).first()
+        if userDB is not None:
+            json_format = {
+                'id': fields.String,
+                'username': fields.String,
+                'fullname': fields.String,
+                'email': fields.String,
+                'bio': fields.String,
+                'photoprofile': fields.String
+            }
+            user_json = json.dumps(marshal(userDB, json_format))
+            return user_json, 200
         else:
             return "CHECK YOUR USERNAME OR PASSWORD AGAIN", 404
 
@@ -96,19 +138,19 @@ def tweeting():
     if request.method == 'POST':
         request_data = request.get_json()
 
-    # check if username in existed DB
-    req_username = request_data.get('username')
-    req_tweet = request_data.get('tweet')
-    userDB = User.query.filter_by(username=req_username).first()
-    if userDB is not None:
-        tweet = Tweets(
-            content = req_tweet,
-            owner = userDB
-        )
+        # check if username in existed DB
+        req_username = request_data.get('username')
+        req_tweet = request_data.get('tweet')
+        userDB = User.query.filter_by(username=req_username).first()
+        if userDB is not None:
+            tweet = Tweets(
+                content = req_tweet,
+                owner = userDB
+            )
 
-        # add to db
-        db.session.add(tweet)
-        db.session.commit()
+            # add to db
+            db.session.add(tweet)
+            db.session.commit()
 
         return 'YOU ARE TWEETING', 201
     else:
@@ -119,22 +161,37 @@ def tweeting():
 def get_tweet():
     
     request_data = request.get_json()
-    print(request_data)
 
     # request_data = request.get_json()
     req_username = request_data.get('username')
 
     # check inside the DB
-    userDB = User.query.filter_by(username=req_username).first()
-    user_tweets = userDB.tweets
+    userDB = Tweets.query.join(User, User.id==Tweets.person_id).add_columns(User.id,User.username,User.fullname,User.photoprofile,Tweets.content,Tweets.date).all()
+    userArr = []
+
+    for dataUser in userDB:
+        test = {
+            "id": dataUser[1],
+            "username": dataUser[2],
+            "fullname": dataUser[3],
+            "photoprofile": dataUser[4],
+            "content": dataUser[5],
+            "date": dataUser[6]
+        }
+        userArr.append(test)
 
     # convert to JSON
     json_format = {
+        'id': fields.Integer,
+        'username': fields.String,
+        'fullname': fields.String,
+        'photoprofile': fields.String,
         'content': fields.String,
         'date': fields.DateTime
     }
-    tweets_json = json.dumps(marshal(user_tweets, json_format))
-    return tweets_json
+    tweets_json = json.dumps(marshal(userArr, json_format))
+    print(tweets_json)
+    return tweets_json, 200
 
 # editing route
 @app.route('/editprofile', methods=['PUT'])
