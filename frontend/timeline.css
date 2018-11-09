@@ -98,7 +98,7 @@ header nav{
     max-width:1190px;
     margin:0 auto;
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr 4fr 1fr;
     grid-template-rows: 45px repeat(2,95px) repeat(4,100px) auto 30px;
     grid-column-gap: 15px;
     grid-row-gap: 15px;
