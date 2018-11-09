@@ -90,10 +90,6 @@ def login():
     else:
         return 'METHOD NOT ALLOWED', 405
 
-def set_cookies(username):
-    resp = make_response('')
-    resp.set_cookie('username', username)
-    return resp
 
 @app.route('/getProfile', methods=['POST'])
 def getProfile():
@@ -101,9 +97,10 @@ def getProfile():
         decoded = jwt.decode(request.headers["Authorization"], jwtSecretKey, algorithm='HS256')
         # request_data = request.get_json()
         # check if email exist in db
-        req_username = decoded["username"]
-        print("test")
-        userDB = User.query.filter_by(username=req_username).first()
+        # req_username = decoded["username"]
+        req_email = decoded["email"]
+        
+        userDB = User.query.filter_by(email=req_email).first()
         if userDB is not None:
             json_format = {
                 'id': fields.String,
@@ -131,12 +128,14 @@ def getProfile():
 @app.route('/tweeting', methods=['POST'])
 def tweeting():
     if request.method == 'POST':
+        decoded = jwt.decode(request.headers["Authorization"], jwtSecretKey, algorithm='HS256')
         request_data = request.get_json()
 
         # check if username in existed DB
-        req_username = request_data.get('username')
+        # req_username = request_data.get('username')
         req_tweet = request_data.get('tweet')
-        userDB = User.query.filter_by(username=req_username).first()
+        req_email = decoded["email"]
+        userDB = User.query.filter_by(email=req_email).first()
         if userDB is not None:
             tweet = Tweets(
                 content = req_tweet,
@@ -152,41 +151,48 @@ def tweeting():
         return 'YOU SHOULD BE LOGIN FIRST',500
 
 # get tweet
-@app.route("/Tweet", methods=['POST'])
-def get_tweet():
-    
-    request_data = request.get_json()
+@app.route("/Tweet", methods=['GET'])
+def add_tweet():
+    if request.method == 'GET':
+        print("headers", request.headers["Authorization"])
+        decoded = jwt.decode(request.headers["Authorization"], jwtSecretKey, algorithm='HS256')
+        # print("decoded", decoded)
+        # request_data = request.get_json()
+        # print('ada',decoded)
 
     # request_data = request.get_json()
-    req_username = request_data.get('username')
+    # req_username = request_data.get('username')
+        req_email = decoded["email"]
+        # print(req_email)
 
     # check inside the DB
-    userDB = Tweets.query.join(User, User.id==Tweets.person_id).add_columns(User.id,User.username,User.fullname,User.photoprofile,Tweets.content,Tweets.date).all()
-    userArr = []
+        userDB = Tweets.query.join(User, User.id==Tweets.person_id).add_columns(User.id,User.username,User.fullname,User.photoprofile,Tweets.content,Tweets.date).all()
+        userArr = []
+        # print(userDB)
 
-    for dataUser in userDB:
-        test = {
-            "id": dataUser[1],
-            "username": dataUser[2],
-            "fullname": dataUser[3],
-            "photoprofile": dataUser[4],
-            "content": dataUser[5],
-            "date": dataUser[6]
-        }
-        userArr.append(test)
+        for dataUser in userDB:
+            test = {
+                "id": dataUser[1],
+                "username": dataUser[2],
+                "fullname": dataUser[3],
+                "photoprofile": dataUser[4],
+                "content": dataUser[5],
+                "date": dataUser[6]
+            }
+            userArr.append(test)
 
     # convert to JSON
-    json_format = {
-        'id': fields.Integer,
-        'username': fields.String,
-        'fullname': fields.String,
-        'photoprofile': fields.String,
-        'content': fields.String,
-        'date': fields.DateTime
-    }
-    tweets_json = json.dumps(marshal(userArr, json_format))
-    print(tweets_json)
-    return tweets_json, 200
+        json_format = {
+            'id': fields.Integer,
+            'username': fields.String,
+            'fullname': fields.String,
+            'photoprofile': fields.String,
+            'content': fields.String,
+            'date': fields.DateTime
+        }
+        tweets_json = json.dumps(marshal(userArr, json_format))
+        print(tweets_json)
+        return tweets_json, 200
 
 # editing route
 @app.route('/editprofile', methods=['PUT'])
@@ -239,17 +245,20 @@ def edit_password():
 @app.route('/deletetweet', methods=['DELETE'])
 def delete_tweet():
     request_data = request.get_json()
-    req_username = request_data.get('username')
+    req_id = request_data.get('id')
+
+    decoded = jwt.decode(request.headers["Authorization"], jwtSecretKey, algorithm='HS256')
 
     if request.method == 'DELETE':
-        userDB = Person.query.filter_by(username=req_username).first()
-        userTweets = userDB.tweets
+        # userDB = Person.query.filter_by(username=req_username).first()
+        # userTweets = userDB.tweets
+        tweets = Tweets.query.filter_by(id=req_id).first()
 
-        print(userTweets)
-        print(userTweets[0])
-        db.session.delete(userTweets[0])
+        # print(userTweets)
+        # print(userTweets[0])
+        db.session.delete(tweets)
         db.session.commit()
-        return 'Fatality', 200
+        return 'Tweet Deleted', 200
 
 # set session
 @app.route('/setsession')
